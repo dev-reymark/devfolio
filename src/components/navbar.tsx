@@ -26,6 +26,7 @@ import { FaServicestack, FaUpwork } from "react-icons/fa6";
 import { data } from "@/data/resume";
 import React from "react";
 import { usePathname } from "next/navigation";
+import ThemeSwitcher from "./theme-switcher";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -46,13 +47,13 @@ export default function NavBar() {
   };
 
   const menuItems = [
-    "Home",
-    "Services",
-    "Blog",
-    "Contact",
-    "Projects",
-    "Work",
-    "Skills",
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/#contact" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Work", href: "/#work" },
+    { name: "Skills", href: "/#skills" },
   ];
 
   return (
@@ -62,6 +63,7 @@ export default function NavBar() {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
+
         <NavbarBrand className="gap-2">
           <Image
             src={data.avatar.url}
@@ -161,17 +163,26 @@ export default function NavBar() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" href="/#contact">
-            Contact
+          <ThemeSwitcher />
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            size="sm"
+            as={Link}
+            color="primary"
+            variant="shadow"
+            href="/#contact"
+          >
+            Let&apos;s Chat
           </Button>
         </NavbarItem>
       </NavbarContent>
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" href="#" size="lg">
-              {item}
+          <NavbarMenuItem key={`${item.name}-${index}`}>
+            <Link className="w-full" href={item.href} size="lg">
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

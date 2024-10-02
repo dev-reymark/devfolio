@@ -14,7 +14,7 @@ import { data } from "@/data/resume";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-black">
       <main className="max-w-screen-md mx-auto p-2 py-12 space-y-6">
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-4">

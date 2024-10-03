@@ -1,4 +1,11 @@
+"use client";
+
 import { CheckIcon } from "@heroicons/react/20/solid";
+import { Accordion, AccordionItem, Image } from "@nextui-org/react";
+import React from "react";
+import dynamic from "next/dynamic";
+
+const ModalComponent = dynamic(() => import("./components/modal"), {});
 
 const includedFeatures = [
   "Private forum access",
@@ -8,8 +15,14 @@ const includedFeatures = [
 ];
 
 export default function Services() {
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <>
+      <ModalComponent isOpen={isOpen} onClose={closeModal} />
       <div className="bg-white">
         <div className="relative isolate px-6 pt-14 lg:px-8">
           <div
@@ -97,7 +110,7 @@ export default function Services() {
                 </div>
                 <div className="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
                   <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl">
-                    <img
+                    <Image
                       className="size-full object-cover object-top"
                       src="https://tailwindui.com/plus/img/component-images/bento-03-mobile-friendly.png"
                       alt=""
@@ -120,7 +133,7 @@ export default function Services() {
                   </p>
                 </div>
                 <div className="flex flex-1 items-center justify-center px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
-                  <img
+                  <Image
                     className="w-full max-lg:max-w-xs"
                     src="https://tailwindui.com/plus/img/component-images/bento-03-performance.png"
                     alt=""
@@ -142,7 +155,7 @@ export default function Services() {
                   </p>
                 </div>
                 <div className="flex flex-1 items-center [container-type:inline-size] max-lg:py-6 lg:pb-2">
-                  <img
+                  <Image
                     className="h-[min(152px,40cqw)] object-cover object-center"
                     src="https://tailwindui.com/plus/img/component-images/bento-03-security.png"
                     alt=""
@@ -265,7 +278,7 @@ export default function Services() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20" />
         <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
         <div className="mx-auto max-w-2xl lg:max-w-4xl">
-          <img
+          <Image
             alt=""
             src="https://tailwindui.com/plus/img/logos/workcation-logo-indigo-600.svg"
             className="mx-auto h-12"
@@ -279,7 +292,7 @@ export default function Services() {
               </p>
             </blockquote>
             <figcaption className="mt-10">
-              <img
+              <Image
                 alt=""
                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 className="mx-auto h-10 w-10 rounded-full"
@@ -299,6 +312,74 @@ export default function Services() {
               </div>
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      <section className="bg-gray-50">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+          <div className="grid md:grid-cols-5 gap-10">
+            <div className="relative md:col-span-2">
+              <div className="max-w-xs">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  Frequently Asked Questions
+                </h2>
+
+                <p className="mt-1 md:block text-base leading-7 text-gray-600">
+                  Answers to the most frequently asked questions.
+                </p>
+              </div>
+            </div>
+
+            <div className="md:col-span-3">
+              <Accordion defaultExpandedKeys={["1"]}>
+                <AccordionItem
+                  key="1"
+                  title={
+                    <p className="text-lg font-semibold text-black">
+                      Exercitation elit reprehenderit mollit quis nostrud.
+                    </p>
+                  }
+                  aria-label="Exercitation elit reprehenderit mollit quis nostrud."
+                >
+                  <p className="mt-2 text-black/50">
+                    Anim reprehenderit ex amet et tempor dolor laboris enim
+                    aliqua.
+                  </p>
+                </AccordionItem>
+                <AccordionItem
+                  key="2"
+                  aria-label="Quis Lorem proident aliquip ex cupidatat ipsum dolore anim ex minim do incididunt esse."
+                  title={
+                    <p className="text-lg font-semibold text-black">
+                      Quis Lorem proident aliquip ex cupidatat ipsum dolore anim
+                      ex minim do incididunt esse.
+                    </p>
+                  }
+                >
+                  <p className="mt-2 text-black/50">
+                    Adipisicing magna incididunt fugiat deserunt cupidatat ea
+                    laborum ex tempor qui officia.
+                  </p>
+                </AccordionItem>
+                <AccordionItem
+                  key="3"
+                  aria-label="Sint officia nostrud exercitation voluptate amet sint mollit
+                    eiusmod pariatur exercitation eu duis."
+                  title={
+                    <p className="text-lg font-semibold text-black">
+                      Sint officia nostrud exercitation voluptate amet sint
+                      mollit eiusmod pariatur exercitation eu duis.
+                    </p>
+                  }
+                >
+                  <p className="mt-2 text-black/50">
+                    Ullamco laboris consectetur deserunt irure veniam in dolor
+                    ut eiusmod occaecat cupidatat aute ullamco.
+                  </p>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
         </div>
       </section>
     </>

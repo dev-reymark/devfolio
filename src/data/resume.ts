@@ -3,6 +3,7 @@ import { FaXTwitter } from "react-icons/fa6";
 export const data = {
   name: "John Doe",
   initial: "JD",
+  title: "Full-stack Developer",
   url: "https://johndoe.dev",
   location: "San Francisco, CA",
   keywords: "Full-stack Developer, React, Node.js, DevOps",
@@ -14,6 +15,7 @@ export const data = {
     url: "img/avatar.png",
     alt: "John Doe",
   },
+  quote: "Cupidatat ad laboris fugiat nulla ex nulla irure in ad.",
   contact: {
     email: "john.doe@example.com",
     tel: "+1-123-456-7890",
@@ -22,7 +24,7 @@ export const data = {
       GitHub: {
         url: "https://github.com/",
         icon: FaGithub,
-        className: "text-black text-2xl",
+        className: "text-[#333333] text-2xl",
       },
       LinkedIn: {
         url: "https://linkedin.com/in/",
@@ -96,7 +98,7 @@ export const data = {
       school: "Stanford University",
       href: "https://stanford.edu",
       degree: "Bachelor of Science in Computer Science",
-      logoUrl: "https://stanford.edu/logo.png",
+      logoUrl: "https://identity.stanford.edu/wp-content/uploads/sites/3/2020/07/SU_SealColor_web3.png",
       start: "2012",
       end: "2016",
     },
@@ -104,7 +106,7 @@ export const data = {
       school: "Online Bootcamp",
       href: "https://bootcamp.com",
       degree: "Full-stack Web Development Certification",
-      logoUrl: "https://bootcamp.com/logo.png",
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Harvard_University_coat_of_arms.svg/800px-Harvard_University_coat_of_arms.svg.png",
       start: "2019",
       end: "2020",
     },
@@ -112,7 +114,7 @@ export const data = {
       school: "Community College",
       href: "https://cc.edu",
       degree: "Associate Degree in Mathematics",
-      logoUrl: "https://cc.edu/logo.png",
+      logoUrl: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS-ZqlUyS1PAOvgOoS7eHm9qo71Ui_E8lUH6gCNOLY_zw_46u0s",
       start: "2010",
       end: "2012",
     },
@@ -124,7 +126,7 @@ export const data = {
       dates: "2022-Present",
       active: true,
       description:
-        "Developed a complete e-commerce solution using Next.js, Typescript, and Stripe for payment integration. The platform handles over 10,000 transactions monthly.",
+        "Developed a complete e-commerce solution using Next.js, Typescript, and Stripe for payment integration. The platform handles over 10,000 transactions monthly. Collaborated with cross-functional teams to implement new features and optimize existing ones.",
       tech: [
         "Next.js",
         "Typescript",
@@ -140,17 +142,18 @@ export const data = {
           type: "Website",
           href: "https://ecommerce.com",
           icon: FaGlobe,
-          className: "text-[#1DA1F2] text-xl",
+          className: "text-success text-xl",
         },
         {
           type: "GitHub",
-          href: "https://github.com/dillionverma/llm.report",
+          href: "https://github.com",
           icon: FaGithub,
           className: "text-black text-xl",
         },
       ],
       image: "https://ecommerce.com/screenshot.png",
-      video: "https://cdn.llm.report/openai-demo.mp4",
+      video:
+        "https://videos.pexels.com/video-files/2278095/2278095-hd_1920_1080_30fps.mp4",
     },
 
     {
@@ -170,23 +173,27 @@ export const data = {
         "Magic UI",
         "Stripe",
         "Cloudflare Workers",
+        "PostgreSQL",
+        "Prisma",
+        "TailwindCSS",
       ],
       links: [
         {
           type: "Website",
           href: "https://aichatbot.com",
           icon: FaGlobe,
-          className: "text-[#1DA1F2] text-xl",
+          className: "text-success text-xl",
         },
         {
           type: "GitHub",
-          href: "https://github.com/dillionverma/llm.report",
+          href: "https://github.com",
           icon: FaGithub,
           className: "text-black text-xl",
         },
       ],
       image: "https://aichatbot.com/screenshot.png",
-      video: "https://cdn.llm.report/openai-demo.mp4",
+      video:
+        "https://videos.pexels.com/video-files/6963744/6963744-hd_1920_1080_25fps.mp4",
     },
   ],
 } as const;

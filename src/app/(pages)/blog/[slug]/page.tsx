@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Key, ReactElement } from "react";
-
 import { IoIosArrowBack } from "react-icons/io";
 import { Chip, Link } from "@nextui-org/react";
 import { Metadata } from "next";
@@ -11,12 +10,17 @@ import React from "react";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-// Fetch content for each post based on its slug
+// Fetch content for each post based on its slug with error handling
 async function getPostData(slug: string) {
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { content, data } = matter(fileContents);
-  return { content, frontMatter: data };
+  try {
+    const filePath = path.join(postsDirectory, `${slug}.mdx`);
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const { content, data } = matter(fileContents);
+    return { content, frontMatter: data };
+  } catch (error) {
+    console.error(`Error fetching post data for slug: ${slug}`, error);
+    throw new Error(`Could not find the post with slug: ${slug}`);
+  }
 }
 
 // Dynamically generate metadata
@@ -62,10 +66,10 @@ export default async function BlogPost({
   const { content, frontMatter } = await getPostData(params.slug);
 
   return (
-    <div className="max-w-screen-lg mx-auto px-4 p-2 py-6">
-      <div className="grid lg:grid-cols-3 gap-y-8 lg:gap-y-0 lg:gap-x-6">
+    <div className="max-w-screen-md mx-auto px-4 p-2 py-6">
+      <div className="">
         <div className="lg:col-span-2">
-          <div className="py-8 lg:pe-8">
+          <div className="py-8">
             <div className="space-y-5 lg:space-y-8">
               <Link
                 className="inline-flex items-center gap-x-1.5 text-sm text-gray-600 decoration-2 hover:underline focus:outline-none focus:underline dark:text-blue-500"
@@ -96,7 +100,7 @@ export default async function BlogPost({
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-y-5 lg:gap-y-0">
                 <div className="flex flex-wrap items-center gap-2">
                   {frontMatter.tags
-                    .split(",")
+                    ?.split(",")
                     .map((tag: string, index: Key | null | undefined) => (
                       <Chip key={index} color="primary" size="sm" radius="sm">
                         {tag.trim()}

@@ -1,5 +1,3 @@
-// C:\Users\Dev\Desktop\Personal\portfolio\src\app\(pages)\blog\page.tsx
-
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
@@ -25,19 +23,24 @@ interface Post {
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-// Fetch metadata for all posts
+// Fetch metadata for all posts with error handling
 async function getPosts(): Promise<Post[]> {
-  const filenames = fs.readdirSync(postsDirectory);
+  try {
+    const filenames = fs.readdirSync(postsDirectory);
 
-  return filenames.map((filename) => {
-    const filePath = path.join(postsDirectory, filename);
-    const { data } = matter(fs.readFileSync(filePath, "utf8"));
+    return filenames.map((filename) => {
+      const filePath = path.join(postsDirectory, filename);
+      const { data } = matter(fs.readFileSync(filePath, "utf8"));
 
-    return {
-      slug: filename.replace(".mdx", ""),
-      ...data,
-    } as Post;
-  });
+      return {
+        slug: filename.replace(".mdx", ""),
+        ...data,
+      } as Post;
+    });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
 }
 
 export default async function BlogIndex() {
@@ -48,14 +51,14 @@ export default async function BlogIndex() {
       <div className="p-2 py-12">
         <div className="max-w-screen-md mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               From the blog
             </h2>
-            <p className="mt-2 text-lg leading-8 text-gray-600">
+            <p className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
               Learn how to grow your business with these blog posts.
             </p>
           </div>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 py-6 gap-12 border-t border-gray-200">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 py-6 gap-12 border-t border-gray-200 dark:border-gray-700">
             {posts.map((post) => (
               <article
                 key={post.slug}
@@ -68,10 +71,11 @@ export default async function BlogIndex() {
                     alt={post.alt}
                     width={500}
                     height={300}
+                    loading="lazy"
                   />
                 </div>
                 <div className="flex items-center gap-x-4 text-xs">
-                  <time dateTime={post.date} className="text-gray-500">
+                  <time dateTime={post.date} className="text-gray-500 dark:text-gray-400">
                     {post.date}
                   </time>
                   <Chip size="sm" radius="sm" color="warning" variant="shadow">
@@ -79,13 +83,13 @@ export default async function BlogIndex() {
                   </Chip>
                 </div>
                 <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300">
                     <Link href={`/blog/${post.slug}`}>
                       <span className="absolute inset-0" />
                       {post.title}
                     </Link>
                   </h3>
-                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
                     {post.desc}
                   </p>
                 </div>

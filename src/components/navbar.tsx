@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Image,
   Navbar,
@@ -7,53 +8,91 @@ import {
   NavbarItem,
   Link,
   Button,
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Listbox,
+  ListboxItem,
+  ListboxSection,
+  cn,
 } from "@nextui-org/react";
-import {
-  FaBlog,
-  FaChevronDown,
-  FaHome,
-  FaRProject,
-  FaToolbox,
-} from "react-icons/fa";
+import { FaBlog, FaHome, FaRProject, FaToolbox } from "react-icons/fa";
 import { FaServicestack, FaUpwork } from "react-icons/fa6";
 import { data } from "@/data/resume";
 import React from "react";
 import { usePathname } from "next/navigation";
 import ThemeSwitcher from "./theme-switcher";
+import { MdOutlineContactPage } from "react-icons/md";
+
+export const IconWrapper = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string;
+}) => (
+  <div
+    className={cn(
+      className,
+      "flex items-center rounded-small justify-center w-7 h-7 p-1"
+    )}
+  >
+    {children}
+  </div>
+);
+
+export const iconClasses =
+  "text-xl text-default-500 pointer-events-none flex-shrink-0";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
   const icons = {
-    home: <FaHome className="text-default size-20" />,
-    services: (
-      <FaServicestack className="text-warning" fill="currentColor" size={30} />
-    ),
-    blog: <FaBlog className="text-success" fill="currentColor" size={30} />,
+    contact: <MdOutlineContactPage className="text-primary/50" size={24} />,
+    home: <FaHome className="text-primary size-20" />,
+    services: <FaServicestack className="text-warning" size={30} />,
+    blog: <FaBlog className="text-success" size={30} />,
     about: {
-      chevron: <FaChevronDown fill="currentColor" size={15} />,
-      project: <FaRProject fill="currentColor" size={30} />,
-      work: <FaUpwork fill="currentColor" size={30} />,
-      skills: <FaToolbox fill="currentColor" size={30} />,
+      project: <FaRProject className="text-secondary" size={30} />,
+      work: <FaUpwork className="text-danger" size={30} />,
+      skills: <FaToolbox className="text-primary" size={30} />,
     },
   };
 
   const menuItems = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/#contact" },
-    { name: "Projects", href: "/#projects" },
-    { name: "Work", href: "/#work" },
-    { name: "Skills", href: "/#skills" },
+    { name: "Home", href: "/", desc: "Get to know me", icon: icons.home },
+    {
+      name: "Services",
+      href: "/services",
+      desc: "What I do?",
+      icon: icons.services,
+    },
+    { name: "Blog", href: "/blog", desc: "My thoughts", icon: icons.blog },
+    {
+      name: "Contact",
+      href: "/#contact",
+      desc: "Get in touch",
+      icon: icons.contact,
+    },
+    {
+      name: "Projects",
+      href: "/#projects",
+      desc: "My latest projects",
+      icon: icons.about.project,
+    },
+    {
+      name: "Work",
+      href: "/#work",
+      desc: "My past experience",
+      icon: icons.about.work,
+    },
+    {
+      name: "Skills",
+      href: "/#skills",
+      desc: "My skills",
+      icon: icons.about.skills,
+    },
   ];
 
   return (
@@ -74,92 +113,22 @@ export default function NavBar() {
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive={pathname === "/"} key="home">
-          <Link
-            color="foreground"
-            href="/"
-            className={`relative inline-block focus:outline-none ${
-              pathname === "/"
-                ? "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-teal-400"
-                : ""
-            }
-              `}
-          >
-            Home
-          </Link>
-        </NavbarItem>
-        <Dropdown>
-          <NavbarItem>
-            <DropdownTrigger>
-              <Button
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                radius="sm"
-                variant="light"
-                endContent={icons.about.chevron}
-              >
-                About
-              </Button>
-            </DropdownTrigger>
+        {menuItems.slice(0, 3).map((item) => (
+          <NavbarItem key={item.name}>
+            <Link
+              color="foreground"
+              href={item.href}
+              className={`relative inline-block focus:outline-none ${
+                pathname === item.href
+                  ? "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-teal-400"
+                  : ""
+              }
+                `}
+            >
+              {item.name}
+            </Link>
           </NavbarItem>
-          <DropdownMenu
-            aria-label=""
-            className="w-[200px]"
-            itemClasses={{
-              base: "gap-4",
-            }}
-          >
-            <DropdownItem
-              href="/#projects"
-              key="proj"
-              description="Check out my latest work"
-            >
-              Project
-            </DropdownItem>
-            <DropdownItem
-              href="/#work"
-              key="work"
-              description="Past work experience"
-            >
-              Work Experience
-            </DropdownItem>
-            <DropdownItem
-              href="/#skills"
-              key="skill"
-              description="My technical skills"
-            >
-              Skills
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <NavbarItem isActive={pathname === "/blog"} key="blog">
-          <Link
-            color="foreground"
-            href="/blog"
-            className={`relative inline-block focus:outline-none ${
-              pathname === "/blog"
-                ? "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-teal-400"
-                : ""
-            }
-              `}
-          >
-            Blog
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive={pathname === "/services"} key="services">
-          <Link
-            color="foreground"
-            href="/services"
-            className={`relative inline-block focus:outline-none ${
-              pathname === "/services"
-                ? "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-teal-400"
-                : ""
-            }
-              `}
-          >
-            Services
-          </Link>
-        </NavbarItem>
+        ))}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -179,13 +148,46 @@ export default function NavBar() {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item.name}-${index}`}>
-            <Link className="w-full" href={item.href} size="lg">
-              {item.name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <NavbarMenuItem isActive>
+          <Listbox aria-label="Listbox menu with sections">
+            <ListboxSection title="Main" showDivider>
+              {menuItems.slice(0, 4).map((item, index) => (
+                <ListboxItem
+                  key={`${item.name}-${index}`}
+                  description={item.desc}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={pathname === item.href ? "text-primary" : ""}
+                  startContent={
+                    <IconWrapper className="bg-primary/10 text-primary">
+                      {item.icon}
+                    </IconWrapper>
+                  }
+                >
+                  {item.name}
+                </ListboxItem>
+              ))}
+            </ListboxSection>
+            <ListboxSection title="About">
+              {menuItems.slice(4).map((item, index) => (
+                <ListboxItem
+                  key={`${item.name}-${index}`}
+                  description={item.desc}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={pathname === item.href ? "text-primary" : ""}
+                  startContent={
+                    <IconWrapper className="bg-primary/10 text-primary">
+                      {item.icon}
+                    </IconWrapper>
+                  }
+                >
+                  {item.name}
+                </ListboxItem>
+              ))}
+            </ListboxSection>
+          </Listbox>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

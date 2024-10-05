@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Card,
   CardBody,
   CardFooter,
@@ -17,13 +18,24 @@ export default function Home() {
     <div className="min-h-screen bg-slate-50 dark:bg-black">
       <main className="max-w-screen-md mx-auto p-2 py-12 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-          <div className="flex flex-col justify-center space-y-4">
+          <div className="flex flex-col justify-center space-y-5">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
               Hi, I&apos;m {data.initial} 👋
             </h1>
             <p className="text-gray-700 dark:text-gray-300 text-xl font-semibold">
               {data.description}
             </p>
+
+            <Button
+              as={Link}
+              className="w-[150px]"
+              color="primary"
+              variant="shadow"
+              download
+              href={data.cv}
+            >
+              Download CV
+            </Button>
           </div>
           <div className="flex justify-center items-center">
             <Image

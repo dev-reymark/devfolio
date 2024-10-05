@@ -120,7 +120,7 @@ export default function NavBar() {
               href={item.href}
               className={`relative inline-block focus:outline-none ${
                 pathname === item.href
-                  ? "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-teal-400"
+                  ? "before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-primary"
                   : ""
               }
                 `}

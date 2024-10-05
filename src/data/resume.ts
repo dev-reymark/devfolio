@@ -5,6 +5,7 @@ export const data = {
   initial: "JD",
   title: "Full-stack Developer",
   url: "https://johndoe.dev",
+  cv: "/static/pdf/file-sample_150kb.pdf",
   location: "San Francisco, CA",
   keywords: "Full-stack Developer, React, Node.js, DevOps",
   description:

@@ -12,19 +12,39 @@ import {
 import { IoBriefcaseOutline } from "react-icons/io5";
 import Contact from "@/components/contact";
 import { data } from "@/data/resume";
+import { IconWrapper } from "@/components/navbar";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black">
       <main className="max-w-screen-md mx-auto p-2 py-12 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-          <div className="flex flex-col justify-center space-y-5">
+          <div className="flex flex-col justify-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
               Hi, I&apos;m {data.initial} 👋
             </h1>
             <p className="text-gray-700 dark:text-gray-300 text-xl font-semibold">
               {data.description}
             </p>
+
+            <div className="flex flex-wrap gap-2">
+              {Object.values(data.contact.social).map((social, index) => (
+                <div key={index}>
+                  <Button
+                    color="primary"
+                    variant="flat"
+                    size="sm"
+                    as={Link}
+                    href={social.url}
+                    className="w-full text-gray-600 dark:text-neutral-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <social.icon className={`w-5 h-5 ${social.className}`} />
+                  </Button>
+                </div>
+              ))}
+            </div>
 
             <Button
               as={Link}
@@ -59,29 +79,122 @@ export default function Home() {
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
             Education
           </h2>
-          {data.education.map((edu, index) => (
-            <div
-              key={index}
-              className="flex justify-between items-center py-4 border-b last:border-0"
-            >
-              <div className="flex items-center gap-5">
-                <Avatar isBordered radius="full" size="md" src={edu.logoUrl} />
-                <div className="flex flex-col gap-1">
-                  <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 leading-tight">
-                    {edu.school}
-                  </h4>
-                  <h5 className="text-md text-gray-500 dark:text-gray-400 tracking-tight">
-                    {edu.degree}
-                  </h5>
+          {data.education.map(
+            (
+              {
+                school,
+                location,
+                degree,
+                logoUrl,
+                start,
+                end,
+                relevantCourses,
+                achievements,
+                activities,
+                thesis,
+              },
+              index
+            ) => (
+              <div
+                key={index}
+                className="flex flex-col py-4 border-b last:border-0"
+              >
+                <div className="flex items-center gap-5">
+                  <Avatar isBordered radius="full" size="md" src={logoUrl} />
+                  <div className="flex flex-col">
+                    <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 leading-tight">
+                      {school} · {location}
+                    </h4>
+                    <h5 className="text-md text-gray-500 dark:text-gray-400 tracking-tight">
+                      {degree}
+                    </h5>
+                    <p>
+                      {start} - {end}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-3">
+                  {relevantCourses?.length > 0 && (
+                    <div className="mt-2">
+                      <h6 className="font-semibold text-gray-900 dark:text-white">
+                        Relevant Courses:
+                      </h6>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {relevantCourses.map((course, courseIndex) => (
+                          <Chip
+                            color="primary"
+                            radius="sm"
+                            size="sm"
+                            key={courseIndex}
+                          >
+                            {course}
+                          </Chip>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {achievements?.length > 0 && (
+                    <div className="mt-2">
+                      <h6 className="font-semibold text-gray-900 dark:text-white">
+                        Achievements:
+                      </h6>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {achievements.map((achievement, achievementIndex) => (
+                          <Chip
+                            size="sm"
+                            radius="sm"
+                            color="primary"
+                            key={achievementIndex}
+                          >
+                            {achievement}
+                          </Chip>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {activities?.length > 0 && (
+                    <div className="mt-2">
+                      <h6 className="font-semibold text-gray-900 dark:text-white">
+                        Activities & Clubs:
+                      </h6>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {activities.map((activity, activityIndex) => (
+                          <Chip
+                            key={activityIndex}
+                            color="primary"
+                            size="sm"
+                            radius="sm"
+                          >
+                            {activity}
+                          </Chip>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {thesis && (
+                    <div className="mt-2">
+                      <h6 className="font-semibold text-gray-900 dark:text-white">
+                        Thesis:
+                      </h6>
+                      <Link
+                        isExternal
+                        color="foreground"
+                        className="font-extrabold"
+                        href="https://github.com"
+                        showAnchorIcon
+                      >
+                        {thesis}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div>
-                <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
-                  {edu.start} - {edu.end}
-                </p>
-              </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
 
         <div id="work" className="mt-8 p-4">
@@ -136,8 +249,21 @@ export default function Home() {
                 size="lg"
                 radius="sm"
                 className="hover:shadow-md transition-shadow"
+                startContent={
+                  skill.icon && (
+                    <IconWrapper className="text-slate-50">
+                      <skill.icon
+                        color={
+                          skill.className?.match(/#[A-Fa-f0-9]{6}/)?.[0] ||
+                          "#000"
+                        }
+                        className="text-lg"
+                      />
+                    </IconWrapper>
+                  )
+                }
               >
-                {skill}
+                {skill.name}
               </Chip>
             ))}
           </div>

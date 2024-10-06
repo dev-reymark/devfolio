@@ -49,7 +49,7 @@ export default async function BlogIndex() {
   return (
     <>
       <div className="p-2 py-12">
-        <div className="max-w-screen-md mx-auto px-6">
+        <div className="max-w-screen-md mx-auto px-2">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               From the blog

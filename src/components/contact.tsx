@@ -136,7 +136,7 @@ export default function Contact() {
 
   return (
     <section className="max-w-screen-xl mx-auto">
-      <div className="px-4 py-4 lg:py-14">
+      <div className="px-2 py-4 lg:py-14">
         <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
           <div className="hidden md:block">
             <p className="inline-block text-sm font-medium bg-clip-text bg-gradient-to-l from-blue-600 to-violet-500 text-transparent dark:from-blue-400 dark:to-violet-400">

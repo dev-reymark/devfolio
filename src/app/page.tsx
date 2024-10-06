@@ -66,7 +66,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div id="about" className="mt-8 p-4">
+        <div id="about" className="mt-8 p-2">
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
             About
           </h2>
@@ -75,7 +75,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div id="education" className="mt-8 p-4">
+        <div id="education" className="mt-8 p-2">
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
             Education
           </h2>
@@ -197,7 +197,7 @@ export default function Home() {
           )}
         </div>
 
-        <div id="work" className="mt-8 p-4">
+        <div id="work" className="mt-8 p-2">
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
             Work Experience
           </h2>
@@ -237,7 +237,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div id="skills" className="mt-8 p-4">
+        <div id="skills" className="mt-8 p-2">
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
             Skills
           </h2>
@@ -269,7 +269,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div id="projects" className="mt-8 p-4">
+        <div id="projects" className="mt-8 p-2">
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
             Projects
           </h2>

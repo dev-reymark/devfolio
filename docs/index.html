@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFolio — Premium Next.js Portfolio Template</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;circle cx='50' cy='50' r='50' fill='%230f172a'/&gt;&lt;text x='50' y='63' font-family='sans-serif' font-weight='bold' font-size='48' fill='%23ffffff' text-anchor='middle'&gt;D&lt;/text&gt;&lt;/svg&gt;">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="A beautiful, data-driven personal portfolio template built with Next.js, Tailwind CSS, and HeroUI.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'float': 'float 4s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(12px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-6px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <style>
+    body {
+      background-color: #f7f7f6;
+    }
+    .code-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .code-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .code-scroll::-webkit-scrollbar-thumb {
+      background: #e4e4e7;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="font-sans text-zinc-900 selection:bg-sky-200/60 overflow-x-hidden">
+
+  <!-- Glow Background Effect -->
+  <div class="absolute inset-x-0 top-0 mx-auto h-[550px] max-w-7xl bg-[radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.12),transparent_40%)] pointer-events-none z-0"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="fixed inset-x-0 top-0 z-50 mx-auto flex h-16 max-w-5xl items-center justify-between px-6 backdrop-blur-xl border-b border-zinc-200/30">
+    <div class="flex items-center gap-2 font-bold tracking-tight text-zinc-950">
+      <span class="flex h-6 w-6 items-center justify-center rounded-full bg-zinc-950 text-[10px] font-mono text-white">D</span>
+      devfolio<span class="h-2 w-2 rounded-full bg-sky-500"></span>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="hidden items-center gap-6 text-xs font-semibold text-zinc-500 md:flex">
+        <a href="#features" class="hover:text-zinc-950 transition">Features</a>
+        <a href="#installation" class="hover:text-zinc-950 transition">Deployment</a>
+        <a href="#customization" class="hover:text-zinc-950 transition">Customization</a>
+      </div>
+      <a href="https://github.com/your-username/devfolio" target="_blank" class="inline-flex h-8 items-center gap-1.5 rounded-full border border-zinc-200 bg-white px-3 text-xs font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 active:scale-[0.98] transition">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden px-6 pb-16 pt-32 text-center z-10">
+    <div class="relative mx-auto max-w-3xl animate-fade-in">
+      
+      <!-- Headline -->
+      <h1 class="text-balance text-5xl font-extrabold tracking-[-0.05em] text-zinc-950 md:text-7xl leading-[1.1]">
+        Build a Portfolio <br /> you're proud to share
+      </h1>
+      
+      <p class="mx-auto mt-6 max-w-xl text-pretty text-sm leading-6 text-zinc-500">
+        A premium, data-driven personal portfolio template built with Next.js and HeroUI. Absolutely zero UI coding required. Just edit your data and deploy.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex justify-center gap-3">
+        <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fdevfolio" target="_blank" class="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 text-sm font-semibold text-white shadow-lg shadow-zinc-900/15 hover:bg-zinc-800 active:scale-[0.98] transition">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-white" xmlns="http://www.w3.org/2000/svg"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+          Deploy to Vercel
+        </a>
+        <a href="#preview" class="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 active:scale-[0.98] transition">
+          View Mockup
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Preview Mockup Interface -->
+    <div id="preview" class="relative mx-auto mt-16 h-[560px] max-w-5xl">
+      <!-- Background shadows -->
+      <div class="absolute inset-x-0 top-16 h-64 rounded-[3rem] bg-gradient-to-b from-zinc-200/60 to-transparent blur-3xl -z-10"></div>
+
+      <!-- Center Browser Mockup Container -->
+      <div class="absolute inset-x-0 top-0 z-30 overflow-hidden rounded-2xl border border-zinc-200/80 bg-white shadow-[0_24px_80px_rgba(24,24,27,0.08)] flex flex-col h-full">
+        <!-- Browser top bar -->
+        <div class="flex h-9 items-center gap-1.5 border-b border-zinc-100 bg-zinc-50/80 px-4 flex-none">
+          <span class="h-2.5 w-2.5 rounded-full bg-red-500"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+          <div class="ml-4 flex-1 flex justify-center">
+            <div class="bg-white border border-zinc-200 rounded-md px-24 py-1 text-[10px] text-zinc-400 flex items-center gap-2">
+              <i data-lucide="lock" class="h-3 w-3"></i> alex-devfolio.vercel.app
+            </div>
+          </div>
+        </div>
+        <!-- Split View: Code Editor & Preview -->
+        <div class="flex-1 flex bg-zinc-50">
+          
+          <!-- Code Editor Side (Left) -->
+          <div class="hidden md:flex w-1/3 flex-col border-r border-zinc-200 bg-[#0d1117] text-white overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2 bg-[#161b22] border-b border-[#30363d] text-[11px] font-mono text-zinc-400">
+              <i data-lucide="file-code" class="h-3 w-3"></i> data/portfolio.ts <span class="ml-auto text-sky-400 bg-sky-900/30 px-2 py-0.5 rounded-full font-sans text-[10px] animate-pulse">Try editing me!</span>
+            </div>
+            <div class="p-4 font-mono text-[11px] leading-relaxed overflow-hidden text-zinc-300">
+<span class="text-pink-400">export const</span> portfolioData = {<br/>
+&nbsp;&nbsp;name: <span class="text-sky-300">"<span id="edit-name" contenteditable="true" class="outline-none border-b border-sky-300/30 focus:border-sky-300 focus:bg-sky-900/40 rounded transition-colors">Alex Developer</span>"</span>,<br/>
+&nbsp;&nbsp;jobTitle: <span class="text-sky-300">"<span id="edit-title" contenteditable="true" class="outline-none border-b border-sky-300/30 focus:border-sky-300 focus:bg-sky-900/40 rounded transition-colors">Senior Full-Stack Engineer</span>"</span>,<br/>
+&nbsp;&nbsp;social: {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;github: <span class="text-sky-300">"<span id="edit-github" contenteditable="true" class="outline-none border-b border-sky-300/30 focus:border-sky-300 focus:bg-sky-900/40 rounded transition-colors">https://github.com/...</span>"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;facebook: <span class="text-sky-300">"<span id="edit-facebook" contenteditable="true" class="outline-none border-b border-sky-300/30 focus:border-sky-300 focus:bg-sky-900/40 rounded transition-colors">https://facebook.com/...</span>"</span><br/>
+&nbsp;&nbsp;},<br/>
+&nbsp;&nbsp;experience: [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jobTitle: <span class="text-sky-300">"<span id="edit-exp-title" contenteditable="true" class="outline-none border-b border-sky-300/30 focus:border-sky-300 focus:bg-sky-900/40 rounded transition-colors">Frontend Architect</span>"</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;company: <span class="text-sky-300">"<span id="edit-exp-company" contenteditable="true" class="outline-none border-b border-sky-300/30 focus:border-sky-300 focus:bg-sky-900/40 rounded transition-colors">TechNova</span>"</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;]<br/>
+};
+            </div>
+          </div>
+
+          <!-- Preview Render Side (Right) -->
+          <div class="flex-1 bg-zinc-50 relative overflow-hidden">
+             <!-- Fake Flickering Grid -->
+             <div class="absolute inset-0 pointer-events-none opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PScxMic+PHJlY3Qgd2lkdGg9JzInIGhlaWdodD0nMicgZmlsbD0nIzBlYTVlOScvPjwvc3ZnPg==')]"></div>
+             
+             <!-- Mock Portfolio Content -->
+             <div class="relative z-10 p-10 pt-16 h-full text-left">
+                <h1 class="text-4xl font-extrabold text-zinc-900 mb-2 tracking-tight">Hi, I'm <span id="preview-name">Alex</span></h1>
+                <h2 id="preview-title" class="text-xl font-semibold text-zinc-600 mb-8 transition-all">Senior Full-Stack Engineer</h2>
+                
+                <div class="flex gap-3 mb-12">
+                   <div id="preview-github" class="h-8 w-8 rounded-full border border-zinc-200 bg-white flex items-center justify-center text-zinc-600 transition-all duration-300">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4"></path></svg>
+                   </div>
+                   <div class="h-8 w-8 rounded-full border border-zinc-200 bg-white flex items-center justify-center text-[#0A66C2]">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                   </div>
+                   <div id="preview-facebook" class="h-8 w-8 rounded-full border border-zinc-200 bg-white flex items-center justify-center text-[#1877F2] transition-all duration-300">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                   </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-xl font-bold text-zinc-900 mb-6">
+                  <i data-lucide="briefcase" class="h-5 w-5 text-sky-500"></i> My career journey
+                </div>
+                
+                <div class="pl-6 border-l border-zinc-200 relative pb-6">
+                   <div class="absolute w-3 h-3 bg-white border-2 border-sky-500 rounded-full -left-[7px] top-1"></div>
+                   <h3 id="preview-exp-title" class="font-bold text-zinc-800 transition-all">Frontend Architect</h3>
+                   <p class="text-xs text-zinc-500 mt-1"><span id="preview-exp-company" class="transition-all">TechNova</span> &bull; 2022 - Present</p>
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section id="features" class="px-6 py-20 max-w-5xl mx-auto">
+    <div class="text-center mb-16 max-w-xl mx-auto">
+      <h2 class="text-balance text-4xl font-extrabold tracking-[-0.04em] text-zinc-950 md:text-5xl">Everything you need.</h2>
+      <p class="mx-auto mt-4 text-pretty text-sm leading-6 text-zinc-500">A completely fully-featured portfolio that updates simply by changing a single data file.</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <div class="mb-6 flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-950 text-white"><i data-lucide="database" class="h-4 w-4"></i></div>
+        <h3 class="text-sm font-bold text-zinc-950">Data-Driven Design</h3>
+        <p class="mt-2 text-xs leading-5 text-zinc-500">No React knowledge needed. Just update the `data/portfolio.ts` file and the UI automatically maps to your data.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <div class="mb-6 flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-950 text-white"><i data-lucide="cloud-lightning" class="h-4 w-4"></i></div>
+        <h3 class="text-sm font-bold text-zinc-950">1-Click Vercel Deploy</h3>
+        <p class="mt-2 text-xs leading-5 text-zinc-500">Designed for Vercel's 1-click deployment pipeline. Get your portfolio live on the internet in under 60 seconds.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <div class="mb-6 flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-950 text-white"><i data-lucide="sparkles" class="h-4 w-4"></i></div>
+        <h3 class="text-sm font-bold text-zinc-950">Premium Animations</h3>
+        <p class="mt-2 text-xs leading-5 text-zinc-500">Features a beautiful flickering grid background, smooth scrolling, and elegant component transitions using Tailwind.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm hover:shadow-md transition">
+        <div class="mb-6 flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-950 text-white"><i data-lucide="smartphone" class="h-4 w-4"></i></div>
+        <h3 class="text-sm font-bold text-zinc-950">Fully Responsive</h3>
+        <p class="mt-2 text-xs leading-5 text-zinc-500">Looks stunning on 4K monitors, laptops, tablets, and phones. The layout automatically adapts to any screen size.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Installation & Code Section -->
+  <section id="installation" class="px-6 py-20 bg-zinc-100/50 border-y border-zinc-200/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-xs font-bold text-sky-500 tracking-wider uppercase mb-2">Step-by-step</p>
+        <h2 class="text-3xl font-extrabold tracking-[-0.04em] text-zinc-950">Deploy without touching the terminal</h2>
+      </div>
+
+      <div class="space-y-12">
+        
+        <!-- Step 1 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-1">
+            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white mb-2">1</span>
+            <h3 class="text-sm font-bold text-zinc-950">Fork & Deploy</h3>
+            <p class="text-xs text-zinc-500 mt-1">Click the Deploy button at the top of the repository. Vercel will ask you to log in with GitHub and will automatically clone this codebase into your account and deploy it.</p>
+          </div>
+          <div class="md:col-span-2 bg-white border border-zinc-200 p-6 rounded-2xl shadow-sm flex items-center justify-center">
+             <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fdevfolio" target="_blank" class="inline-flex items-center gap-2 rounded bg-black px-4 py-2 text-sm font-semibold text-white shadow-md hover:scale-105 transition">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 fill-white" xmlns="http://www.w3.org/2000/svg"><path d="M24 22.525H0l12-21.05 12 21.05z"/></svg>
+                Deploy with Vercel
+             </a>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-1">
+            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white mb-2">2</span>
+            <h3 class="text-sm font-bold text-zinc-950">Update Configuration</h3>
+            <p class="text-xs text-zinc-500 mt-1">Navigate to your newly created GitHub repository, open the <code>data/portfolio.ts</code> file, and click the Edit (pencil) icon to add your own data.</p>
+          </div>
+          <div class="md:col-span-2 relative">
+            <pre class="bg-zinc-950 text-zinc-50 p-4 rounded-xl text-xs font-mono overflow-x-auto code-scroll"><code>export const portfolioData = {
+  name: "Your Name",
+  jobTitle: "Your Job Title",
+  professionalSummary: "A brief bio about yourself...",
+  email: "your.email@example.com",
+  social: {
+    github: "https://github.com/yourusername",
+    linkedin: "https://linkedin.com/in/yourusername"
+  },
+  // Add your experiences, education, and projects below!
+};</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-1">
+            <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white mb-2">3</span>
+            <h3 class="text-sm font-bold text-zinc-950">Commit & Watch</h3>
+            <p class="text-xs text-zinc-500 mt-1">Once you commit your changes in GitHub, Vercel will instantly detect the update and push your new information live to the world!</p>
+          </div>
+          <div class="md:col-span-2 p-6 bg-emerald-50 border border-emerald-100 rounded-2xl">
+             <div class="flex items-center gap-3 text-emerald-800">
+                <i data-lucide="check-circle" class="h-6 w-6"></i>
+                <div>
+                   <h4 class="font-bold text-sm">Automated Pipeline Active</h4>
+                   <p class="text-xs opacity-90 mt-1">No need to manually trigger builds. Every save to the main branch updates your site within seconds.</p>
+                </div>
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Customization Section -->
+  <section id="customization" class="px-6 py-20 max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-extrabold tracking-[-0.04em] text-zinc-950">For Developers (Local Setup)</h2>
+      </div>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-bold text-zinc-900 mb-4 border-b border-zinc-100 pb-2">Running Locally</h3>
+          <p class="text-sm text-zinc-600 mb-4">If you want to clone the project and run it on your local machine to make architectural changes, you will need Node.js installed.</p>
+          <div class="relative">
+            <pre class="bg-zinc-950 text-zinc-50 p-4 rounded-xl text-xs font-mono overflow-x-auto code-scroll"><code># 1. Clone the repository
+git clone https://github.com/your-username/devfolio.git
+
+# 2. Navigate into the directory
+cd devfolio
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
+npm run dev
+
+# 5. Open http://localhost:3000 in your browser</code></pre>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold text-zinc-900 mb-4 border-b border-zinc-100 pb-2">Adding your PDF Resume</h3>
+          <p class="text-sm text-zinc-600 mb-4">The "Download Resume" button works by linking to a file in the <code>public/</code> folder.</p>
+          <ul class="list-disc list-inside text-sm text-zinc-600 space-y-2 mb-4">
+             <li>Simply drop your actual PDF resume into the <code>public/</code> folder.</li>
+             <li>Ensure the file is named exactly <code>resume.pdf</code>.</li>
+             <li>Commit and push the file to GitHub.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-200/50 bg-white py-10 px-6 text-center">
+    <p class="text-xs text-zinc-500 font-semibold tracking-wide flex items-center justify-center gap-1">
+      DevFolio &bull; Open Source Template
+    </p>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+    
+    // Interactive Mockup Script
+    const editName = document.getElementById('edit-name');
+    const editTitle = document.getElementById('edit-title');
+    const previewName = document.getElementById('preview-name');
+    const previewTitle = document.getElementById('preview-title');
+
+    if (editName && previewName) {
+      editName.addEventListener('input', (e) => {
+        const fullName = e.target.innerText;
+        // In the real template we split the name, so let's mimic that
+        previewName.innerText = fullName.split(" ")[0] || "There";
+      });
+      
+      // Prevent enter key from creating newlines
+      editName.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    }
+
+    if (editTitle && previewTitle) {
+      editTitle.addEventListener('input', (e) => {
+        previewTitle.innerText = e.target.innerText || "Your Job Title";
+      });
+      
+      editTitle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    }
+
+    // Experience Fields
+    const editExpTitle = document.getElementById('edit-exp-title');
+    const editExpCompany = document.getElementById('edit-exp-company');
+    const previewExpTitle = document.getElementById('preview-exp-title');
+    const previewExpCompany = document.getElementById('preview-exp-company');
+
+    if (editExpTitle && previewExpTitle) {
+      editExpTitle.addEventListener('input', (e) => {
+        previewExpTitle.innerText = e.target.innerText || "Frontend Architect";
+      });
+      editExpTitle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    }
+
+    if (editExpCompany && previewExpCompany) {
+      editExpCompany.addEventListener('input', (e) => {
+        previewExpCompany.innerText = e.target.innerText || "TechNova";
+      });
+      editExpCompany.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    }
+
+    // Socials
+    const editGithub = document.getElementById('edit-github');
+    const editFacebook = document.getElementById('edit-facebook');
+    const previewGithub = document.getElementById('preview-github');
+    const previewFacebook = document.getElementById('preview-facebook');
+
+    if (editGithub && previewGithub) {
+      editGithub.addEventListener('input', (e) => {
+        if(e.target.innerText.trim() === '') {
+           previewGithub.classList.add('opacity-0', 'scale-50', 'w-0', 'overflow-hidden');
+           previewGithub.classList.remove('w-8');
+        } else {
+           previewGithub.classList.remove('opacity-0', 'scale-50', 'w-0', 'overflow-hidden');
+           previewGithub.classList.add('w-8');
+        }
+      });
+      editGithub.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    }
+
+    if (editFacebook && previewFacebook) {
+      editFacebook.addEventListener('input', (e) => {
+        if(e.target.innerText.trim() === '') {
+           previewFacebook.classList.add('opacity-0', 'scale-50', 'w-0', 'overflow-hidden');
+           previewFacebook.classList.remove('w-8');
+        } else {
+           previewFacebook.classList.remove('opacity-0', 'scale-50', 'w-0', 'overflow-hidden');
+           previewFacebook.classList.add('w-8');
+        }
+      });
+      editFacebook.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    }
+  </script>
+</body>
+</html>

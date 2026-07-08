@@ -42,6 +42,12 @@ To link your actual resume:
 If you want to run this project on your own computer:
 
 ```bash
+# Clone the repository
+git clone https://github.com/dev-reymark/devfolio.git
+
+# Navigate into the project directory
+cd devfolio
+
 # Install dependencies
 npm install
 
